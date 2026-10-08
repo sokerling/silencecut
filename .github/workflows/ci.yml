@@ -1,0 +1,64 @@
+name: Windows and macOS checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install FFmpeg on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg -y --no-progress
+            if ($LASTEXITCODE -ne 0) { throw 'FFmpeg installation failed' }
+          }
+      - name: Install FFmpeg on macOS
+        if: runner.os == 'macOS'
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then brew install ffmpeg; fi
+          test "$(uname -m)" = arm64
+      - name: Set up Windows dependencies
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/setup.ps1 -Python (Get-Command python).Source
+      - name: Set up macOS dependencies
+        if: runner.os == 'macOS'
+        run: PYTHON="$(command -v python)" bash scripts/setup.sh
+      - name: API tests on Windows
+        if: runner.os == 'Windows'
+        working-directory: backend
+        run: ./venv/Scripts/python.exe -m pytest tests -q
+      - name: API tests on macOS
+        if: runner.os == 'macOS'
+        working-directory: backend
+        run: ./venv/bin/python -m pytest tests -q
+      - name: Frontend tests
+        working-directory: frontend
+        run: npm test
+      - name: Frontend production build
+        working-directory: frontend
+        run: npm run build

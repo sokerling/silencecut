@@ -1,0 +1,637 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-04T23:00:37.692213+00:00",
+  "time_unit": "seconds",
+  "time_origin": "first decoded audio sample",
+  "interval_convention": "[start, end)",
+  "silence_scope": "complement of speech across the complete decoded audio, including leading and trailing intervals",
+  "source": {
+    "video_filename": "test_video.mp4",
+    "sha256": "77e46a42708d73daa9bff1351a509820cbf48c914310670489da4022b5fc554b",
+    "size_bytes": 608213661,
+    "audio_duration_seconds": 1428.956
+  },
+  "versions": {
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.8.2",
+    "onnxruntime": "1.29.0",
+    "av": "18.1.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "matplotlib": "3.11.2",
+    "nvidia-cublas-cu12": "12.9.2.10",
+    "nvidia-cudnn-cu12": "9.25.1.1",
+    "torch": null,
+    "python": "3.11.9"
+  },
+  "provenance": {
+    "kind": "one-time recomputation using unchanged notebook experiment cells",
+    "note": "Full prior result tables were not persisted. These CSV files represent this new frozen run; existing notebook outputs are retained as historical results.",
+    "historical_notebook_outputs_sha256": "60047f22f7636120d2d9a5830a625430377a0604599e44aedab51c0a888c2bdb",
+    "historical_whisper_segment_count": 165,
+    "historical_notebook_summaries": {
+      "whisper": "Длительность видео: 1429.0 сек.\nВремя обработки: 108.2 сек.\nСкорость: 13.21x realtime\nКоличество сегментов: 165\n\nКоличество найденных пауз: 19\nСредняя длительность: 3.623 сек.\nМедианная длительность: 1.000 сек.\nМаксимальная длительность: 25.000 сек.\nПауз >= 0.5 сек.: 17\nПауз >= 1.0 сек.: 15\nПауз >= 1.5 сек.: 6\nПауз >= 2.0 сек.: 6\nПауз >= 3.0 сек.: 5\nСуммарная длительность промежутков: 68.840 сек.\n",
+      "rms": "Количество найденных пауз: 2635\nСредняя длительность: 0.060 сек.\nМедианная длительность: 0.030 сек.\nМаксимальная длительность: 0.990 сек.\nСуммарная длительность пауз: 159.056 сек.\nДоля тишины: 11.13%\nПауз >= 0.5 сек.: 12\n",
+      "silero": "Длительность аудио: 1428.956 сек.\nДекодирование: 1.211 сек.\nТолько VAD: 1.986 сек.\nПолная обработка без загрузки модели: 3.198 сек.\nСкорость полной обработки: 446.87x realtime\n\nКоличество speech-интервалов: 337\nКоличество silence-интервалов: 338\nСуммарная речь: 1157.248 сек. (80.99%)\nСуммарная тишина: 271.708 сек. (19.01%)\nСредняя пауза: 0.804 сек.\nМедианная пауза: 0.672 сек.\nМаксимальная пауза: 3.840 сек.\nПауз >= 0.5 сек.: 242\nПауз >= 1.0 сек.: 82\nПауз >= 1.5 сек.: 26\nПауз >= 2.0 сек.: 11\nПауз >= 3.0 сек.: 1\n",
+      "comparison_120s": "       method  speech_intervals  speech_s  non_speech_s  speech_percent  \\\n0     Whisper                 2   119.400         0.600          99.500   \n1         RMS               186   111.630         8.370          93.025   \n2  Silero VAD                36    89.632        30.368          74.693   \n\n   non_speech_percent  \n0               0.500  \n1               6.975  \n2              25.307  "
+    },
+    "whisper_segment_count_matches_historical": false,
+    "comparison_120s_matches_historical_summary": true
+  },
+  "csv_files": {
+    "whisper_segments.csv": {
+      "rows": 328,
+      "columns": [
+        "start",
+        "end",
+        "duration",
+        "text",
+        "pause_after"
+      ],
+      "sha256": "f2d5c04904af6eca8d8b5d747ac597724548b8603013f9a087d2daf6f0ab4032"
+    },
+    "whisper_speech_intervals.csv": {
+      "rows": 34,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "9c3634565705aa375c9a1f279d8a5301eb2a9c1780564278e3ae97d078dff8c5"
+    },
+    "whisper_silence_intervals.csv": {
+      "rows": 34,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "8f3182052e98f11cd873f6594b430805b248e6bbd02196e980c85a306b33e3ee"
+    },
+    "rms_speech_intervals.csv": {
+      "rows": 2634,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "6ceda435a18210ab12383e464ea08e62659ba2207b368091c36775337e675d20"
+    },
+    "rms_silence_intervals.csv": {
+      "rows": 2635,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "4036cbf32a2504f654b78b66c12956d1f160ae20edfec32ff94013a4b1288336"
+    },
+    "silero_speech_intervals.csv": {
+      "rows": 337,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "033119662ba31d75e5443071158534cd2c23fecc34c8d171a91d59220e278a33"
+    },
+    "silero_silence_intervals.csv": {
+      "rows": 338,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "4fc0a8ae88c5769da463fdb870ac5f3a018ccd4d70840e7d46d27b905a940808"
+    }
+  },
+  "methods": {
+    "whisper": {
+      "files": {
+        "segments": "whisper_segments.csv",
+        "speech_intervals": "whisper_speech_intervals.csv",
+        "silence_intervals": "whisper_silence_intervals.csv"
+      },
+      "parameters": {
+        "model_size": "small",
+        "device": "cuda",
+        "compute_type": "float16",
+        "language": "ru",
+        "vad_filter": false,
+        "transcription_options": {
+          "beam_size": 5,
+          "best_of": 5,
+          "patience": 1,
+          "length_penalty": 1,
+          "repetition_penalty": 1,
+          "no_repeat_ngram_size": 0,
+          "log_prob_threshold": -1.0,
+          "no_speech_threshold": 0.6,
+          "compression_ratio_threshold": 2.4,
+          "condition_on_previous_text": true,
+          "prompt_reset_on_temperature": 0.5,
+          "temperatures": [
+            0.0,
+            0.2,
+            0.4,
+            0.6,
+            0.8,
+            1.0
+          ],
+          "initial_prompt": null,
+          "prefix": null,
+          "suppress_blank": true,
+          "suppress_tokens": [
+            1,
+            2,
+            7,
+            8,
+            9,
+            10,
+            14,
+            25,
+            26,
+            27,
+            28,
+            29,
+            31,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            90,
+            91,
+            92,
+            93,
+            359,
+            503,
+            522,
+            542,
+            873,
+            893,
+            902,
+            918,
+            922,
+            931,
+            1350,
+            1853,
+            1982,
+            2460,
+            2627,
+            3246,
+            3253,
+            3268,
+            3536,
+            3846,
+            3961,
+            4183,
+            4667,
+            6585,
+            6647,
+            7273,
+            9061,
+            9383,
+            10428,
+            10929,
+            11938,
+            12033,
+            12331,
+            12562,
+            13793,
+            14157,
+            14635,
+            15265,
+            15618,
+            16553,
+            16604,
+            18362,
+            18956,
+            20075,
+            21675,
+            22520,
+            26130,
+            26161,
+            26435,
+            28279,
+            29464,
+            31650,
+            32302,
+            32470,
+            36865,
+            42863,
+            47425,
+            49870,
+            50254,
+            50258,
+            50358,
+            50359,
+            50360,
+            50361,
+            50362
+          ],
+          "without_timestamps": false,
+          "max_initial_timestamp": 1.0,
+          "word_timestamps": false,
+          "prepend_punctuations": "\"'“¿([{-",
+          "append_punctuations": "\"'.。,，!！?？:：”)]}、",
+          "multilingual": false,
+          "max_new_tokens": null,
+          "clip_timestamps": [
+            0.0
+          ],
+          "hallucination_silence_threshold": null,
+          "hotwords": null
+        },
+        "transcribe_call_arguments": {
+          "audio": "test_video.mp4",
+          "language": "ru",
+          "task": "transcribe",
+          "log_progress": false,
+          "beam_size": 5,
+          "best_of": 5,
+          "patience": 1,
+          "length_penalty": 1,
+          "repetition_penalty": 1,
+          "no_repeat_ngram_size": 0,
+          "temperature": [
+            0.0,
+            0.2,
+            0.4,
+            0.6,
+            0.8,
+            1.0
+          ],
+          "compression_ratio_threshold": 2.4,
+          "log_prob_threshold": -1.0,
+          "no_speech_threshold": 0.6,
+          "condition_on_previous_text": true,
+          "prompt_reset_on_temperature": 0.5,
+          "initial_prompt": null,
+          "prefix": null,
+          "suppress_blank": true,
+          "suppress_tokens": [
+            -1
+          ],
+          "without_timestamps": false,
+          "max_initial_timestamp": 1.0,
+          "word_timestamps": false,
+          "prepend_punctuations": "\"'“¿([{-",
+          "append_punctuations": "\"'.。,，!！?？:：”)]}、",
+          "multilingual": false,
+          "vad_filter": false,
+          "vad_parameters": null,
+          "max_new_tokens": null,
+          "chunk_length": null,
+          "clip_timestamps": "0",
+          "hallucination_silence_threshold": null,
+          "hotwords": null,
+          "language_detection_threshold": 0.5,
+          "language_detection_segments": 1
+        },
+        "transcribe_call_arguments_provenance": {
+          "explicit_arguments": [
+            "audio",
+            "language",
+            "vad_filter"
+          ],
+          "audio_expression": "str(VIDEO_PATH)",
+          "audio_path_storage": "video basename; SHA-256 is recorded in source",
+          "omitted_arguments": "reconstructed from the installed transcribe signature; current versions match the frozen run",
+          "historical_run_165": "complete runtime arguments and versions were not independently saved"
+        }
+      },
+      "results": {
+        "speech_interval_count": 34,
+        "silence_interval_count": 34,
+        "speech_seconds": 1355.3400000000001,
+        "silence_seconds": 73.61599999999962,
+        "speech_percent": 94.84826684656491,
+        "silence_percent": 5.151733153435068,
+        "pause_statistics": {
+          "count": 34,
+          "mean_seconds": 2.165176470588224,
+          "median_seconds": 1.0,
+          "max_seconds": 25.0,
+          "total_seconds": 73.61599999999962,
+          "counts_at_least_seconds": {
+            "0.5": 33,
+            "1.0": 28,
+            "1.5": 4,
+            "2.0": 4,
+            "3.0": 3
+          }
+        },
+        "segment_count": 328,
+        "processing_seconds": 108.44856770000479,
+        "realtime": 13.176347371897442,
+        "timing_scope": "audio decoding and complete transcription; model initialization excluded",
+        "intersegment_pause_statistics": {
+          "count": 34,
+          "mean_seconds": 2.1458823529411672,
+          "median_seconds": 1.0,
+          "max_seconds": 25.0,
+          "total_seconds": 72.95999999999968,
+          "counts_at_least_seconds": {
+            "0.5": 32,
+            "1.0": 28,
+            "1.5": 4,
+            "2.0": 4,
+            "3.0": 3
+          }
+        }
+      }
+    },
+    "rms": {
+      "files": {
+        "speech_intervals": "rms_speech_intervals.csv",
+        "silence_intervals": "rms_silence_intervals.csv"
+      },
+      "parameters": {
+        "sample_rate_hz": 16000,
+        "channels": 1,
+        "window_ms": 30,
+        "window_samples": 480,
+        "threshold_dbfs": -40,
+        "investigated_thresholds_dbfs": [
+          -50,
+          -45,
+          -40,
+          -35,
+          -30
+        ],
+        "log_rms_floor": 1e-10,
+        "peak_normalization": false,
+        "silence_condition": "dbfs < threshold_dbfs",
+        "smoothing": false
+      },
+      "results": {
+        "speech_interval_count": 2634,
+        "silence_interval_count": 2635,
+        "speech_seconds": 1269.9000000000026,
+        "silence_seconds": 159.05599999999737,
+        "speech_percent": 88.8690764446213,
+        "silence_percent": 11.130923555378708,
+        "pause_statistics": {
+          "count": 2635,
+          "mean_seconds": 0.06036280834914511,
+          "median_seconds": 0.03000000000002956,
+          "max_seconds": 0.9900000000000091,
+          "total_seconds": 159.05599999999737,
+          "counts_at_least_seconds": {
+            "0.5": 12,
+            "1.0": 0,
+            "1.5": 0,
+            "2.0": 0,
+            "3.0": 0
+          }
+        },
+        "processing_seconds": 1.5317795000009937,
+        "realtime": 932.8731713664224,
+        "timing_scope": "audio decoding and RMS window computation",
+        "threshold_comparison": [
+          {
+            "threshold_dbfs": -50,
+            "pause_count": 17,
+            "mean_pause_s": 0.042117647058815585,
+            "median_pause_s": 0.030000000000086402,
+            "max_pause_s": 0.12000000000000455,
+            "silence_total_s": 0.715999999999865,
+            "silence_percent": 0.050106511327141286,
+            "pauses_ge_0_5s": 0
+          },
+          {
+            "threshold_dbfs": -45,
+            "pause_count": 426,
+            "mean_pause_s": 0.04020187793426906,
+            "median_pause_s": 0.029999999999972715,
+            "max_pause_s": 0.21000000000003638,
+            "silence_total_s": 17.12599999999862,
+            "silence_percent": 1.1984973645093775,
+            "pauses_ge_0_5s": 0
+          },
+          {
+            "threshold_dbfs": -40,
+            "pause_count": 2635,
+            "mean_pause_s": 0.06036280834914511,
+            "median_pause_s": 0.03000000000002956,
+            "max_pause_s": 0.9900000000000091,
+            "silence_total_s": 159.05599999999737,
+            "silence_percent": 11.130923555378708,
+            "pauses_ge_0_5s": 12
+          },
+          {
+            "threshold_dbfs": -35,
+            "pause_count": 4076,
+            "mean_pause_s": 0.11462610402355243,
+            "median_pause_s": 0.060000000000002274,
+            "max_pause_s": 1.7100000000000364,
+            "silence_total_s": 467.2159999999997,
+            "silence_percent": 32.69631815115369,
+            "pauses_ge_0_5s": 175
+          },
+          {
+            "threshold_dbfs": -30,
+            "pause_count": 4213,
+            "mean_pause_s": 0.17761357702349892,
+            "median_pause_s": 0.09000000000003183,
+            "max_pause_s": 2.9399999999999977,
+            "silence_total_s": 748.286000000001,
+            "silence_percent": 52.3659230935033,
+            "pauses_ge_0_5s": 362
+          }
+        ]
+      }
+    },
+    "silero": {
+      "files": {
+        "speech_intervals": "silero_speech_intervals.csv",
+        "silence_intervals": "silero_silence_intervals.csv"
+      },
+      "parameters": {
+        "model": "silero_vad_v6.onnx",
+        "wrapper": "faster_whisper.vad",
+        "sample_rate_hz": 16000,
+        "channels": 1,
+        "window_samples": 512,
+        "device": "cpu",
+        "provider": "CPUExecutionProvider",
+        "intra_op_threads": 1,
+        "inter_op_threads": 1,
+        "threshold": 0.5,
+        "neg_threshold": 0.35,
+        "min_speech_duration_ms": 250,
+        "max_speech_duration_s": null,
+        "min_silence_duration_ms": 250,
+        "speech_pad_ms": 0,
+        "max_speech_duration_unlimited": true
+      },
+      "results": {
+        "speech_interval_count": 337,
+        "silence_interval_count": 338,
+        "speech_seconds": 1157.2480000000012,
+        "silence_seconds": 271.7079999999987,
+        "speech_percent": 80.98555868760138,
+        "silence_percent": 19.014441312398613,
+        "pause_statistics": {
+          "count": 338,
+          "mean_seconds": 0.8038698224852033,
+          "median_seconds": 0.671999999999997,
+          "max_seconds": 3.840000000000032,
+          "total_seconds": 271.7079999999987,
+          "counts_at_least_seconds": {
+            "0.5": 242,
+            "1.0": 82,
+            "1.5": 26,
+            "2.0": 11,
+            "3.0": 1
+          }
+        },
+        "model_initialization_seconds": 0.05296709999674931,
+        "decoding_seconds": 1.2359626999968896,
+        "vad_seconds": 2.0574085999978706,
+        "processing_seconds": 3.2934171999950195,
+        "realtime": 433.88247319597434,
+        "timing_scope": "audio decoding and VAD; model initialization excluded"
+      }
+    }
+  },
+  "comparison_120s": [
+    {
+      "method": "whisper",
+      "start": 0.0,
+      "end": 120.0,
+      "speech_interval_count": 2,
+      "speech_seconds": 119.4,
+      "silence_seconds": 0.5999999999999943,
+      "speech_percent": 99.5,
+      "silence_percent": 0.4999999999999953
+    },
+    {
+      "method": "rms",
+      "start": 0.0,
+      "end": 120.0,
+      "speech_interval_count": 186,
+      "speech_seconds": 111.63000000000008,
+      "silence_seconds": 8.36999999999992,
+      "speech_percent": 93.02500000000006,
+      "silence_percent": 6.974999999999933
+    },
+    {
+      "method": "silero",
+      "start": 0.0,
+      "end": 120.0,
+      "speech_interval_count": 36,
+      "speech_seconds": 89.632,
+      "silence_seconds": 30.367999999999995,
+      "speech_percent": 74.69333333333334,
+      "silence_percent": 25.30666666666666
+    }
+  ],
+  "verification": {
+    "csv_round_trip": "exact values and text; all 7 tables checked",
+    "read_csv_float_precision": "round_trip",
+    "json_round_trip": "strict JSON parsed and serialized with native JSON arrays; Python tuple/list representation is not compared",
+    "csv_value_preservation": "assert_frame_equal(check_exact=True) passed against all 7 in-memory export tables before kernel shutdown"
+  },
+  "seed": 42,
+  "environment": {
+    "inspected_at_utc": "2026-10-04T23:14:14.573021+00:00",
+    "scope": "environment inspected during reproducibility audit; historical environment is not independently attested",
+    "python": {
+      "version": "3.11.9",
+      "implementation": "CPython",
+      "architecture": "AMD64"
+    },
+    "os": {
+      "system": "Windows",
+      "caption": "Майкрософт Windows 11 Pro",
+      "version": "10.0.26200",
+      "build": "26200",
+      "architecture": "64-bit"
+    },
+    "cpu": {
+      "model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+      "physical_cores": 8,
+      "logical_processors": 16
+    },
+    "gpu": [
+      {
+        "model": "NVIDIA GeForce RTX 3070",
+        "driver_version": "610.47",
+        "memory_mib": 8192
+      }
+    ],
+    "hardware_collection": "Win32_Processor, Win32_OperatingSystem, nvidia-smi",
+    "torch_available": false
+  },
+  "reproducibility": {
+    "configured_seed": 42,
+    "seed_scope": "new experiment executions after running the notebook seed cell",
+    "existing_csv_seed": null,
+    "existing_csv_seed_status": "not recorded at generation time",
+    "existing_csv_regenerated": false,
+    "seed_targets": [
+      "random",
+      "numpy",
+      "ctranslate2"
+    ],
+    "optional_seed_target": "torch if installed",
+    "torch_installed": false,
+    "determinism_note": "Setting seeds does not guarantee identical results across library versions, GPU drivers or parallel numerical implementations. It does not retroactively assign seed 42 to existing CSV files.",
+    "video_sha256_verified": "77e46a42708d73daa9bff1351a509820cbf48c914310670489da4022b5fc554b",
+    "csv_sha256_verified": {
+      "rms_silence_intervals.csv": "4036cbf32a2504f654b78b66c12956d1f160ae20edfec32ff94013a4b1288336",
+      "rms_speech_intervals.csv": "6ceda435a18210ab12383e464ea08e62659ba2207b368091c36775337e675d20",
+      "silero_silence_intervals.csv": "4fc0a8ae88c5769da463fdb870ac5f3a018ccd4d70840e7d46d27b905a940808",
+      "silero_speech_intervals.csv": "033119662ba31d75e5443071158534cd2c23fecc34c8d171a91d59220e278a33",
+      "whisper_segments.csv": "f2d5c04904af6eca8d8b5d747ac597724548b8603013f9a087d2daf6f0ab4032",
+      "whisper_silence_intervals.csv": "8f3182052e98f11cd873f6594b430805b248e6bbd02196e980c85a306b33e3ee",
+      "whisper_speech_intervals.csv": "9c3634565705aa375c9a1f279d8a5301eb2a9c1780564278e3ae97d078dff8c5"
+    }
+  },
+  "whisper_variability_analysis": {
+    "historical_segment_count": 165,
+    "frozen_segment_count": 328,
+    "status": "static analysis; no method rerun",
+    "primary_hypothesis": "temperature fallback can switch to stochastic token sampling, changing timestamp tokens and segment boundaries",
+    "confirmation": "possible cause, not proven for the historical runs",
+    "evidence": {
+      "temperatures": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "compression_ratio_threshold": 2.4,
+      "log_prob_threshold": -1.0,
+      "condition_on_previous_text": true,
+      "sampling_for_positive_temperature": {
+        "beam_size": 1,
+        "num_hypotheses": 5,
+        "sampling_topk": 0
+      },
+      "seed_in_historical_runs": "not recorded",
+      "current_versions_match_frozen_metadata": true,
+      "historical_165_version_snapshot": null
+    },
+    "missing_evidence": [
+      "per-segment temperatures",
+      "per-segment avg_logprob and no_speech_prob",
+      "timestamp token sequences",
+      "fallback logs for both runs",
+      "full segment table for historical 165 run"
+    ],
+    "notes": [
+      "Timestamp tokens determine segment splitting and following window offsets.",
+      "Previous generated text can affect later decoding when condition_on_previous_text is enabled.",
+      "No evidence establishes that a library update caused the difference.",
+      "The original and frozen runs cover the same speech duration on the first 120 seconds."
+    ],
+    "inspected_source": {
+      "file": "backend/venv/Lib/site-packages/faster_whisper/transcribe.py",
+      "sha256": "5d5ffb00018561d3d529b2c72e1d9f5fff055bea725f3cccc7c6c67f5cc8ffe4",
+      "fallback_lines": [
+        1432,
+        1516
+      ]
+    }
+  }
+}

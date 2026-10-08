@@ -1,0 +1,11 @@
+# Keep shell launchers usable on macOS even from a Windows checkout.
+* text=auto
+*.sh text eol=lf
+*.ps1 text eol=crlf
+
+# Frozen research files must retain their original bytes on every platform.
+backend/test_venv.ipynb -text
+backend/test_whisper.py -text
+backend/test_whisper_output.txt -text
+backend/results/*.csv -text
+backend/results/*.json -text
