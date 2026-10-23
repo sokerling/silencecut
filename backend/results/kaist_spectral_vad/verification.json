@@ -1,0 +1,16 @@
+{
+  "original_cells_preserved": 44,
+  "new_cells_executed": 19,
+  "all_new_code_cells_comment_free": true,
+  "previous_results_and_preview_unchanged": true,
+  "csv_hash_and_schema_checks": 33,
+  "speech_silence_partitions_checked": 13,
+  "exact_full_recording_gt_round_trip": 4,
+  "full_recording_metrics_recomputed": 4,
+  "clip_method_metrics_recomputed": 4,
+  "whisper_only_changed_argument": "language: ru -> ko",
+  "stft_energy_entropy_flatness_sanity_checks": "passed",
+  "smoothing_and_partial_frame_boundary_checks": "passed",
+  "tuning_weighted_counts_match_sample_level_evaluation": true,
+  "status": "passed"
+}

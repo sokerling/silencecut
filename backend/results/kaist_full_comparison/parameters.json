@@ -1,0 +1,153 @@
+{
+  "spectral": {
+    "features": {
+      "sample_rate_hz": 16000,
+      "window_ms": 25,
+      "hop_ms": 10,
+      "window": "hann",
+      "n_fft": 512,
+      "band_hz": [
+        200,
+        4000
+      ],
+      "noise_quantile": 0.2,
+      "energy_floor_dbfs": -60.0,
+      "stft_scaling": "psd",
+      "boundary": "zeros",
+      "padded": true
+    },
+    "grid": {
+      "energy_margin_db": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "max_entropy": [
+        0.65,
+        0.75,
+        0.85,
+        0.95
+      ],
+      "max_flatness": [
+        0.1,
+        0.25,
+        0.45,
+        0.65
+      ],
+      "min_speech_ms": [
+        100,
+        250
+      ],
+      "max_gap_ms": [
+        100,
+        250
+      ]
+    },
+    "selected_parameters": {
+      "energy_margin_db": 12.0,
+      "max_entropy": 0.75,
+      "max_flatness": 0.1,
+      "min_speech_ms": 250,
+      "max_gap_ms": 250
+    },
+    "smoothing_order": [
+      "fill internal gaps <= max_gap_ms",
+      "remove speech runs < min_speech_ms"
+    ],
+    "frame_decision_scope": "[j*0.01, (j+1)*0.01), final slot clipped",
+    "noise_estimation": "20th percentile of energy of the current input only; offline, no GT",
+    "clip_energy_threshold_dbfs": -46.49739151000976,
+    "tuning_features_seconds": 1.3665602000000945,
+    "tuning_search_seconds": 2.0721362000003865,
+    "reused_full_recording_predictions": true
+  },
+  "rms": {
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "window_ms": 30,
+    "window_samples": 480,
+    "threshold_dbfs": -40,
+    "investigated_thresholds_dbfs": [
+      -50,
+      -45,
+      -40,
+      -35,
+      -30
+    ],
+    "log_rms_floor": 1e-10,
+    "peak_normalization": false,
+    "silence_condition": "dbfs < threshold_dbfs",
+    "smoothing": false
+  },
+  "silero": {
+    "model": "silero_vad_v6.onnx",
+    "wrapper": "faster_whisper.vad",
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "window_samples": 512,
+    "device": "cpu",
+    "provider": "CPUExecutionProvider",
+    "intra_op_threads": 1,
+    "inter_op_threads": 1,
+    "threshold": 0.5,
+    "neg_threshold": 0.35,
+    "min_speech_duration_ms": 250,
+    "max_speech_duration_s": null,
+    "min_silence_duration_ms": 250,
+    "speech_pad_ms": 0,
+    "max_speech_duration_unlimited": true
+  },
+  "whisper": {
+    "model_size": "small",
+    "device": "cuda",
+    "compute_type": "float16",
+    "transcribe_call_arguments": {
+      "language": "ko",
+      "task": "transcribe",
+      "log_progress": false,
+      "beam_size": 5,
+      "best_of": 5,
+      "patience": 1,
+      "length_penalty": 1,
+      "repetition_penalty": 1,
+      "no_repeat_ngram_size": 0,
+      "temperature": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "compression_ratio_threshold": 2.4,
+      "log_prob_threshold": -1.0,
+      "no_speech_threshold": 0.6,
+      "condition_on_previous_text": true,
+      "prompt_reset_on_temperature": 0.5,
+      "initial_prompt": null,
+      "prefix": null,
+      "suppress_blank": true,
+      "suppress_tokens": [
+        -1
+      ],
+      "without_timestamps": false,
+      "max_initial_timestamp": 1.0,
+      "word_timestamps": false,
+      "prepend_punctuations": "\"'“¿([{-",
+      "append_punctuations": "\"'.。,，!！?？:：”)]}、",
+      "multilingual": false,
+      "vad_filter": false,
+      "vad_parameters": null,
+      "max_new_tokens": null,
+      "chunk_length": null,
+      "clip_timestamps": "0",
+      "hallucination_silence_threshold": null,
+      "hotwords": null,
+      "language_detection_threshold": 0.5,
+      "language_detection_segments": 1
+    },
+    "change_from_previous_experiment": "language ru -> ko, authorized for Korean dataset"
+  }
+}

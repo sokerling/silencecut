@@ -1,0 +1,218 @@
+{
+  "created_at_utc": "2026-10-23T21:03:48.703374+00:00",
+  "dataset": "KAIST VAD Recorded Dataset",
+  "recordings": [
+    "room",
+    "park",
+    "bus_stop"
+  ],
+  "evaluation_scope": "complete WAV recordings; not the 280-340 second room excerpt",
+  "positive_class": "speech",
+  "sample_rate_hz": 16000,
+  "boundary_collar_s": 0,
+  "interval_convention": "[start,end)",
+  "time_origin": "first audio sample of the complete WAV",
+  "zero_division": 0,
+  "seed": 42,
+  "whisper_seed_scope": "reset to 42 before every full-recording transcription",
+  "parameter_selection": "all parameters frozen from preceding experiment; no test GT used in inference or tuning",
+  "spectral_tuning_recording": "construction_site",
+  "timing_scope": "decoded float32 mono input to merged speech intervals; excludes file loading, model initialization, scoring and saving; one run per recording",
+  "timing_origin": "spectral times reused from previous saved run; other methods newly measured",
+  "averaging": "unweighted arithmetic mean over three recordings for each metric separately; mean F1 is not F1 computed from mean precision and recall",
+  "mean_processing_s": "arithmetic mean of the three processing times",
+  "environment": {
+    "python": "3.11.9",
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3070, 617.42, 8192 MiB",
+    "versions": {
+      "numpy": "2.4.6",
+      "pandas": "3.0.6",
+      "scipy": "1.17.1",
+      "matplotlib": "3.11.2",
+      "faster-whisper": "1.2.1",
+      "ctranslate2": "4.8.2",
+      "onnxruntime": "1.29.0",
+      "av": "18.1.0",
+      "nvidia-cublas-cu12": "12.9.2.10",
+      "nvidia-cudnn-cu12": "9.25.1.1"
+    }
+  },
+  "model_initialization_seconds": {
+    "silero": 0.050391799995850306,
+    "whisper": 1.4305081999991671
+  },
+  "errors": {},
+  "sources": [
+    {
+      "recording": "room",
+      "split": "test",
+      "file": "room.wav",
+      "size_bytes": 57680640,
+      "sha256": "c13a0fd5be251d01aef91208fc8a37d7e418d56fdefa8c6f05399302ed38b684"
+    },
+    {
+      "recording": "room",
+      "split": "test",
+      "file": "room.mat",
+      "size_bytes": 103332,
+      "sha256": "c2bd7c43cfb798818e976e35d43a1d50c92dfaad88c656cb6f924d7f3052d5ed"
+    },
+    {
+      "recording": "park",
+      "split": "test",
+      "file": "park.wav",
+      "size_bytes": 57728938,
+      "sha256": "3c4983fb97f8adc7bd103211777e57269d658f1ff51e1708347241bdd050e7d0"
+    },
+    {
+      "recording": "park",
+      "split": "test",
+      "file": "park.mat",
+      "size_bytes": 103138,
+      "sha256": "d9d6a44dfe629a5b06427a7907adf57180fa90a9e477ef774ee301e40d8db992"
+    },
+    {
+      "recording": "bus_stop",
+      "split": "test",
+      "file": "bus_stop.wav",
+      "size_bytes": 115301356,
+      "sha256": "a1fe7b2980960e6cf32d3d6beae4bb32f7aed057f26d2e9a7d7a8651d13a2cf7"
+    },
+    {
+      "recording": "bus_stop",
+      "split": "test",
+      "file": "bus_stop.mat",
+      "size_bytes": 103189,
+      "sha256": "2494295fb89790635cff2303139c86e0a998b115d980a76d171e3c2a17946619"
+    }
+  ],
+  "parameters_file": "parameters.json",
+  "script_sha256": "827d21263cc0dca158d355d8b9e155efc7b036671985ef40faccc5bb415d990e",
+  "csv_files": {
+    "bus_stop_rms_silence_intervals.csv": {
+      "sha256": "b268be4c02d700c0eb93d807b0d8e1af8ee7253c4ca2b0d272831911f14c200e",
+      "rows": 1
+    },
+    "bus_stop_rms_speech_intervals.csv": {
+      "sha256": "c7acc1fcddd6750262bfe3725d94ed34adcb63ba4275f961bf68795e0e1f393c",
+      "rows": 1
+    },
+    "bus_stop_silero_silence_intervals.csv": {
+      "sha256": "dbd670c532e449f6ef2b1fe2f0f2b6aa2bdd8b9c63043ffb12b843e78b3c2ab3",
+      "rows": 216
+    },
+    "bus_stop_silero_speech_intervals.csv": {
+      "sha256": "50244d02f34b0eca66081c626637619572142c4e7b2b6ada064f41f4b086f6b8",
+      "rows": 216
+    },
+    "bus_stop_spectral_silence_intervals.csv": {
+      "sha256": "97eeb795af5a1c7686e8eb91c7bbd770668cfd559bf153161c4325586f9f16b4",
+      "rows": 459
+    },
+    "bus_stop_spectral_speech_intervals.csv": {
+      "sha256": "d3441b73ba44fdb4d93d0f1abcc0367a745bd5702ce7aee7c73ba2288739b731",
+      "rows": 458
+    },
+    "bus_stop_whisper_segments.csv": {
+      "sha256": "8f3e6cffa5a56e3aebd9cfe7f7f937d374793bf7801c1211534d9b02c1d1b836",
+      "rows": 698
+    },
+    "bus_stop_whisper_silence_intervals.csv": {
+      "sha256": "0c746cadd5bab6832c8c747d743becdfd34e869710707d0dace932a43e9777be",
+      "rows": 20
+    },
+    "bus_stop_whisper_speech_intervals.csv": {
+      "sha256": "960bb1ebe5ec81c8929ff23d09631f10390dc70708b4f2ec7653ed12545155d2",
+      "rows": 21
+    },
+    "full_recording_metrics.csv": {
+      "sha256": "b6a664dc3d217c8173dddae31d896d3e5326d4c0b22bfb953039c22764dde23b",
+      "rows": 12
+    },
+    "macro_averages.csv": {
+      "sha256": "c01068c7c5a13261bf706aa2b520d1c0236d49573809ff859da3eebc8e548cbf",
+      "rows": 4
+    },
+    "park_rms_silence_intervals.csv": {
+      "sha256": "9ee2fd8a7047aea18ebd876c1c7e7af4d239d90dda835e333c3a38c686c2e7f2",
+      "rows": 406
+    },
+    "park_rms_speech_intervals.csv": {
+      "sha256": "e3a2d106a0206e3f98cdc082f32020c0c521361ddcaf70505dec268189d61142",
+      "rows": 406
+    },
+    "park_silero_silence_intervals.csv": {
+      "sha256": "e41d698169a51b979e8bbdef07a8b0ba0dbe5c6bbd119fc588ea2f32c26da078",
+      "rows": 112
+    },
+    "park_silero_speech_intervals.csv": {
+      "sha256": "8ef8963dbc9ba5c6bb5a752102d051057f1a24492f944e2bc9b41e480dc13ad2",
+      "rows": 112
+    },
+    "park_spectral_silence_intervals.csv": {
+      "sha256": "a7501e7bd080049c0f2d15e76a01ea9d4d659b23fb35a3604d2d1a49e4fc5a2f",
+      "rows": 232
+    },
+    "park_spectral_speech_intervals.csv": {
+      "sha256": "ac8e6c5792616b8b99994b79608353b13cd910851204ee8450e50c06879ed114",
+      "rows": 231
+    },
+    "park_whisper_segments.csv": {
+      "sha256": "a85e7f9e9abf3f40114c45fbc7a58b1ee52d741b838d29cd64bc8c25d09fb8a9",
+      "rows": 188
+    },
+    "park_whisper_silence_intervals.csv": {
+      "sha256": "10de91d9a6769bfe2db75fd433c97436b6401578d6c5bc3d4abe74c39b5708fc",
+      "rows": 22
+    },
+    "park_whisper_speech_intervals.csv": {
+      "sha256": "e5a1c9d718a520c39dae432c7198dd80731004512a57251a7d73e42e0b1a4f54",
+      "rows": 23
+    },
+    "room_rms_silence_intervals.csv": {
+      "sha256": "9c4f0289e9f8d9ffa5316b78233acc836020329f9caf9551c81d89f9e88cb76b",
+      "rows": 1644
+    },
+    "room_rms_speech_intervals.csv": {
+      "sha256": "abd59067997b66723fb00f8dc1a776a765f90869e192f1f5d02dfa5c4622e8af",
+      "rows": 1643
+    },
+    "room_silero_silence_intervals.csv": {
+      "sha256": "3292c31170a9f4c14cd52a5debcd93abcea69646d9a97f07fa78c4569d130871",
+      "rows": 171
+    },
+    "room_silero_speech_intervals.csv": {
+      "sha256": "17941a703f80469778dae5e99c006960fd940482eced85e4b6302890ac072e18",
+      "rows": 170
+    },
+    "room_spectral_silence_intervals.csv": {
+      "sha256": "b366ffd71fee09eaf483a937033df3e3e688b4707c36f6eb3d52a6e888a628b4",
+      "rows": 260
+    },
+    "room_spectral_speech_intervals.csv": {
+      "sha256": "27ba6997d47aab3c283d7b5e8417c7d6b9ee1972d9b84ff257e03ac01e60cfae",
+      "rows": 259
+    },
+    "room_whisper_segments.csv": {
+      "sha256": "4aab693408e832a7cd7047ea00bc1a4841e468c280cee0debada32ba722db46d",
+      "rows": 728
+    },
+    "room_whisper_silence_intervals.csv": {
+      "sha256": "af6dfc4071025e0f32456b90968566d071f11077096526e44a6bf7546fffbc27",
+      "rows": 12
+    },
+    "room_whisper_speech_intervals.csv": {
+      "sha256": "5e40424e87e5a67a9c15fdded3f5dc019cf5bd8ac076e05f4c7929b9f813e5db",
+      "rows": 13
+    },
+    "sources.csv": {
+      "sha256": "6fb129df2fccd6910983541eb6a427787fe12a8ef5d4fc9382111babd75aa604",
+      "rows": 6
+    }
+  },
+  "completed_pairs": 12,
+  "previous_files_unchanged": true,
+  "protected_file_count": 47
+}

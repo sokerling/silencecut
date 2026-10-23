@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "created_at_utc": "2026-10-23T20:54:47.515811+00:00",
+  "dataset": "KAIST VAD Recorded Dataset",
+  "source_url": "https://github.com/jtkim-kaist/VAD#recorded-dataset",
+  "sources": [
+    {
+      "recording": "construction_site",
+      "split": "tuning",
+      "file": "construction_site.wav",
+      "size_bytes": 57767104,
+      "sha256": "d7da1e681cf79cb678d1ea4dfb229f7101d4ac68e1056149e31ce67f6cc2c93a"
+    },
+    {
+      "recording": "construction_site",
+      "split": "tuning",
+      "file": "construction_site.mat",
+      "size_bytes": 102909,
+      "sha256": "bce985abee18ae04b7eec6468c3cacc15868765b1bcb1aa4f6e9fa149bdfbde7"
+    },
+    {
+      "recording": "room",
+      "split": "test",
+      "file": "room.wav",
+      "size_bytes": 57680640,
+      "sha256": "c13a0fd5be251d01aef91208fc8a37d7e418d56fdefa8c6f05399302ed38b684"
+    },
+    {
+      "recording": "room",
+      "split": "test",
+      "file": "room.mat",
+      "size_bytes": 103332,
+      "sha256": "c2bd7c43cfb798818e976e35d43a1d50c92dfaad88c656cb6f924d7f3052d5ed"
+    },
+    {
+      "recording": "park",
+      "split": "test",
+      "file": "park.wav",
+      "size_bytes": 57728938,
+      "sha256": "3c4983fb97f8adc7bd103211777e57269d658f1ff51e1708347241bdd050e7d0"
+    },
+    {
+      "recording": "park",
+      "split": "test",
+      "file": "park.mat",
+      "size_bytes": 103138,
+      "sha256": "d9d6a44dfe629a5b06427a7907adf57180fa90a9e477ef774ee301e40d8db992"
+    },
+    {
+      "recording": "bus_stop",
+      "split": "test",
+      "file": "bus_stop.wav",
+      "size_bytes": 115301356,
+      "sha256": "a1fe7b2980960e6cf32d3d6beae4bb32f7aed057f26d2e9a7d7a8651d13a2cf7"
+    },
+    {
+      "recording": "bus_stop",
+      "split": "test",
+      "file": "bus_stop.mat",
+      "size_bytes": 103189,
+      "sha256": "2494295fb89790635cff2303139c86e0a998b115d980a76d171e3c2a17946619"
+    }
+  ],
+  "interval_convention": "[start, end)",
+  "time_unit": "seconds",
+  "protocol": {
+    "tuning_recording": "construction_site",
+    "test_recordings": [
+      "room",
+      "park",
+      "bus_stop"
+    ],
+    "selection_metric": "maximum sample-level F1 on tuning recording",
+    "test_parameters_retuned": false,
+    "speaker_independent": false,
+    "full_recordings_evaluated_methods": [
+      "spectral"
+    ],
+    "four_method_clip": {
+      "recording": "room",
+      "start": 280.0,
+      "end": 340.0,
+      "csv_time_origin": "clip start",
+      "all_methods_input": "same 60-second float32 mono array, no outside context"
+    }
+  },
+  "evaluation": {
+    "positive_class": "speech",
+    "resolution_hz": 16000,
+    "boundary_collar_s": 0,
+    "zero_division": 0,
+    "ground_truth_smoothing": false,
+    "timing": "already-decoded float32 audio to merged intervals, excluding model initialization, metrics and file IO; single run",
+    "x_realtime": "audio_duration / processing_seconds"
+  },
+  "spectral": {
+    "features": {
+      "sample_rate_hz": 16000,
+      "window_ms": 25,
+      "hop_ms": 10,
+      "window": "hann",
+      "n_fft": 512,
+      "band_hz": [
+        200,
+        4000
+      ],
+      "noise_quantile": 0.2,
+      "energy_floor_dbfs": -60.0,
+      "stft_scaling": "psd",
+      "boundary": "zeros",
+      "padded": true
+    },
+    "grid": {
+      "energy_margin_db": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "max_entropy": [
+        0.65,
+        0.75,
+        0.85,
+        0.95
+      ],
+      "max_flatness": [
+        0.1,
+        0.25,
+        0.45,
+        0.65
+      ],
+      "min_speech_ms": [
+        100,
+        250
+      ],
+      "max_gap_ms": [
+        100,
+        250
+      ]
+    },
+    "selected_parameters": {
+      "energy_margin_db": 12.0,
+      "max_entropy": 0.75,
+      "max_flatness": 0.1,
+      "min_speech_ms": 250,
+      "max_gap_ms": 250
+    },
+    "smoothing_order": [
+      "fill internal gaps <= max_gap_ms",
+      "remove speech runs < min_speech_ms"
+    ],
+    "frame_decision_scope": "[j*0.01, (j+1)*0.01), final slot clipped",
+    "noise_estimation": "20th percentile of energy of the current input only; offline, no GT",
+    "clip_energy_threshold_dbfs": -46.49739151000976,
+    "tuning_features_seconds": 1.3665602000000945,
+    "tuning_search_seconds": 2.0721362000003865
+  },
+  "rms": {
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "window_ms": 30,
+    "window_samples": 480,
+    "threshold_dbfs": -40,
+    "investigated_thresholds_dbfs": [
+      -50,
+      -45,
+      -40,
+      -35,
+      -30
+    ],
+    "log_rms_floor": 1e-10,
+    "peak_normalization": false,
+    "silence_condition": "dbfs < threshold_dbfs",
+    "smoothing": false
+  },
+  "silero": {
+    "model": "silero_vad_v6.onnx",
+    "wrapper": "faster_whisper.vad",
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "window_samples": 512,
+    "device": "cpu",
+    "provider": "CPUExecutionProvider",
+    "intra_op_threads": 1,
+    "inter_op_threads": 1,
+    "threshold": 0.5,
+    "neg_threshold": 0.35,
+    "min_speech_duration_ms": 250,
+    "max_speech_duration_s": null,
+    "min_silence_duration_ms": 250,
+    "speech_pad_ms": 0,
+    "max_speech_duration_unlimited": true
+  },
+  "whisper": {
+    "model_size": "small",
+    "device": "cuda",
+    "compute_type": "float16",
+    "transcribe_call_arguments": {
+      "language": "ko",
+      "task": "transcribe",
+      "log_progress": false,
+      "beam_size": 5,
+      "best_of": 5,
+      "patience": 1,
+      "length_penalty": 1,
+      "repetition_penalty": 1,
+      "no_repeat_ngram_size": 0,
+      "temperature": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "compression_ratio_threshold": 2.4,
+      "log_prob_threshold": -1.0,
+      "no_speech_threshold": 0.6,
+      "condition_on_previous_text": true,
+      "prompt_reset_on_temperature": 0.5,
+      "initial_prompt": null,
+      "prefix": null,
+      "suppress_blank": true,
+      "suppress_tokens": [
+        -1
+      ],
+      "without_timestamps": false,
+      "max_initial_timestamp": 1.0,
+      "word_timestamps": false,
+      "prepend_punctuations": "\"'“¿([{-",
+      "append_punctuations": "\"'.。,，!！?？:：”)]}、",
+      "multilingual": false,
+      "vad_filter": false,
+      "vad_parameters": null,
+      "max_new_tokens": null,
+      "chunk_length": null,
+      "clip_timestamps": "0",
+      "hallucination_silence_threshold": null,
+      "hotwords": null,
+      "language_detection_threshold": 0.5,
+      "language_detection_segments": 1
+    },
+    "change_from_previous_experiment": "language ru -> ko, authorized for Korean dataset"
+  },
+  "model_initialization_seconds": {
+    "silero": 0.07596509999711998,
+    "whisper": 2.546793200002867
+  },
+  "errors": {},
+  "environment": {
+    "python": "3.11.9",
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3070, 617.42, 8192 MiB",
+    "versions": {
+      "numpy": "2.4.6",
+      "pandas": "3.0.6",
+      "scipy": "1.17.1",
+      "matplotlib": "3.11.2",
+      "faster-whisper": "1.2.1",
+      "ctranslate2": "4.8.2",
+      "onnxruntime": "1.29.0",
+      "av": "18.1.0",
+      "nvidia-cublas-cu12": "12.9.2.10",
+      "nvidia-cudnn-cu12": "9.25.1.1"
+    }
+  },
+  "limitations": [
+    "Only one recording used for tuning; no speaker-independent split",
+    "Four-method metrics are from one 60-second held-out room excerpt",
+    "Spectral thresholds may not transfer to changing noise conditions or tonal interference",
+    "Whisper ASR timestamps are not a speech-specific VAD output",
+    "CPU and GPU timing, single run, model initialization excluded; seed does not guarantee GPU determinism"
+  ],
+  "csv_files": {
+    "bus_stop_ground_truth_silence_intervals.csv": {
+      "rows": 169,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "46aff3adfb80c0333708a001963cf8f1d8d660a1140fa3f8d98aeada46049c1f"
+    },
+    "bus_stop_ground_truth_speech_intervals.csv": {
+      "rows": 168,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "3140763e637ab4068c641b25152c2ea60c55792b432e01ab12d668c3e5111070"
+    },
+    "bus_stop_spectral_silence_intervals.csv": {
+      "rows": 459,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "97eeb795af5a1c7686e8eb91c7bbd770668cfd559bf153161c4325586f9f16b4"
+    },
+    "bus_stop_spectral_speech_intervals.csv": {
+      "rows": 458,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "d3441b73ba44fdb4d93d0f1abcc0367a745bd5702ce7aee7c73ba2288739b731"
+    },
+    "construction_site_ground_truth_silence_intervals.csv": {
+      "rows": 114,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "da91802c41cc2ae9a4d2335fe65b0f283e1707ee8cea433218ada9ba80821348"
+    },
+    "construction_site_ground_truth_speech_intervals.csv": {
+      "rows": 113,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "d8486814569f6ef41197ffa269ec0894084c426f39d6a9f7f4ff7f1f88864e69"
+    },
+    "construction_site_spectral_silence_intervals.csv": {
+      "rows": 230,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "5ea16a52bd18272e746eca1d91b4a9526218a220899764b494281484a80b06dd"
+    },
+    "construction_site_spectral_speech_intervals.csv": {
+      "rows": 229,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "ab9407de8e834dc5182fb6e2fdbd86d290f2436adb343ffe08b93fe31021f375"
+    },
+    "park_ground_truth_silence_intervals.csv": {
+      "rows": 132,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "c4bd387eb69af0affcb1abc07c8a96d4efec97f86fd200f22c4b0372d5f68e0d"
+    },
+    "park_ground_truth_speech_intervals.csv": {
+      "rows": 131,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "3c218f0fecbeeefbe2b8ade9dc17bd607540fdd74aaa6cd530c202c36510d2d1"
+    },
+    "park_spectral_silence_intervals.csv": {
+      "rows": 232,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "a7501e7bd080049c0f2d15e76a01ea9d4d659b23fb35a3604d2d1a49e4fc5a2f"
+    },
+    "park_spectral_speech_intervals.csv": {
+      "rows": 231,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "ac8e6c5792616b8b99994b79608353b13cd910851204ee8450e50c06879ed114"
+    },
+    "room_280_340_ground_truth_silence_intervals.csv": {
+      "rows": 14,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "4f8d280131b3fbc382f6fb7d4638a201e774c17626b66b0eac17ce5c4f8f4f6c"
+    },
+    "room_280_340_ground_truth_speech_intervals.csv": {
+      "rows": 14,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "181b1314bb109ec90d54199e216aa26913e0e272ed8bc5c910deb22711e4528b"
+    },
+    "room_280_340_metrics.csv": {
+      "rows": 4,
+      "columns": [
+        "method",
+        "recording",
+        "source_offset_s",
+        "duration_s",
+        "status",
+        "processing_s",
+        "x_realtime",
+        "speech_intervals",
+        "precision",
+        "recall",
+        "f1",
+        "iou",
+        "tp_samples",
+        "fp_samples",
+        "fn_samples",
+        "tn_samples",
+        "tp_s",
+        "fp_s",
+        "fn_s",
+        "tn_s"
+      ],
+      "sha256": "c509874cbb1a01dd26cad291bd645073cdb186592dbf3da4efdc644e43effec8"
+    },
+    "room_280_340_rms_silence_intervals.csv": {
+      "rows": 101,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "0589585ac4cd82800d6416dfae6fc4a3c39f4d2a0f33c8084591b7ef197d063c"
+    },
+    "room_280_340_rms_speech_intervals.csv": {
+      "rows": 101,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "aef2b30bc506885392288a23442dc0600d53046f845b13b8dad5e6fdec7d544a"
+    },
+    "room_280_340_silero_silence_intervals.csv": {
+      "rows": 14,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "c0825d0761d2f3a5625f662ad755bb2d5f10db3729a05d4503eb947b1e74130a"
+    },
+    "room_280_340_silero_speech_intervals.csv": {
+      "rows": 14,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "96c217ca145fe3a1c94b7d014144390b536b7dbb5d008bc2a04ce2d35fb43fc7"
+    },
+    "room_280_340_spectral_features.csv": {
+      "rows": 6000,
+      "columns": [
+        "start",
+        "end",
+        "energy_dbfs",
+        "entropy",
+        "flatness",
+        "speech"
+      ],
+      "sha256": "c65bbdc7fa634f5647d99524e4d8f5c931d14045decb14a216370862a951f23b"
+    },
+    "room_280_340_spectral_silence_intervals.csv": {
+      "rows": 17,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "fe0ec72d4cd995e295f79b3fe81b40806bc0f03f698035b7a206e17e3aa2cb51"
+    },
+    "room_280_340_spectral_speech_intervals.csv": {
+      "rows": 17,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "0bea0bde47bd23428012f2405e6fe957731c6269be2c0a737619e144672d5fcb"
+    },
+    "room_280_340_whisper_segments.csv": {
+      "rows": 32,
+      "columns": [
+        "start",
+        "end",
+        "text",
+        "avg_logprob",
+        "no_speech_prob",
+        "temperature"
+      ],
+      "sha256": "4dda3d06e220e6a4f581945c4bb2b197e15a5e95fe29eba06bf2b3ca87e41f14"
+    },
+    "room_280_340_whisper_silence_intervals.csv": {
+      "rows": 9,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "20e303adee29b6b8aa1b296da845f7fc244abcfe62b7cbcc612750d89bdbc7f1"
+    },
+    "room_280_340_whisper_speech_intervals.csv": {
+      "rows": 10,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "d86c8e8fa68a8c1d9ba02844b034c711f45071310e92c7457e9ff8eac691c373"
+    },
+    "room_ground_truth_silence_intervals.csv": {
+      "rows": 177,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "7c2a38b5be83610fe2bd43bebcf0921d24dfc5d26188778da1c473467ef0cc91"
+    },
+    "room_ground_truth_speech_intervals.csv": {
+      "rows": 176,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "ac9f8d106196f903f3095d1ba96f7ad6bfccbb7359c55af34e4220fd8f49a124"
+    },
+    "room_spectral_silence_intervals.csv": {
+      "rows": 260,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "b366ffd71fee09eaf483a937033df3e3e688b4707c36f6eb3d52a6e888a628b4"
+    },
+    "room_spectral_speech_intervals.csv": {
+      "rows": 259,
+      "columns": [
+        "start",
+        "end"
+      ],
+      "sha256": "27ba6997d47aab3c283d7b5e8417c7d6b9ee1972d9b84ff257e03ac01e60cfae"
+    },
+    "sources.csv": {
+      "rows": 8,
+      "columns": [
+        "recording",
+        "split",
+        "file",
+        "size_bytes",
+        "sha256"
+      ],
+      "sha256": "1d67ef01b763d9c22d8a03c66f552715a406ab0daa0097c3740f989090b6a71b"
+    },
+    "spectral_recording_metrics.csv": {
+      "rows": 4,
+      "columns": [
+        "recording",
+        "split",
+        "duration_s",
+        "energy_threshold_dbfs",
+        "processing_s",
+        "x_realtime",
+        "speech_intervals",
+        "precision",
+        "recall",
+        "f1",
+        "iou",
+        "tp_samples",
+        "fp_samples",
+        "fn_samples",
+        "tn_samples",
+        "tp_s",
+        "fp_s",
+        "fn_s",
+        "tn_s"
+      ],
+      "sha256": "4069a68ed7c450034d76e9f983bd074ad4e06b5c2ab72bfd8ebb955360ed24fd"
+    },
+    "spectral_test_aggregate.csv": {
+      "rows": 2,
+      "columns": [
+        "aggregation",
+        "precision",
+        "recall",
+        "f1",
+        "iou",
+        "tp_samples",
+        "fp_samples",
+        "fn_samples",
+        "tn_samples",
+        "tp_s",
+        "fp_s",
+        "fn_s",
+        "tn_s"
+      ],
+      "sha256": "d125fcfe72f5266eb6cdde5b4956291b288b65f93450db88deaa14244913eb03"
+    },
+    "spectral_tuning.csv": {
+      "rows": 320,
+      "columns": [
+        "energy_margin_db",
+        "max_entropy",
+        "max_flatness",
+        "min_speech_ms",
+        "max_gap_ms",
+        "energy_threshold_dbfs",
+        "precision",
+        "recall",
+        "f1",
+        "iou",
+        "tp_samples",
+        "fp_samples",
+        "fn_samples",
+        "tn_samples",
+        "tp_s",
+        "fp_s",
+        "fn_s",
+        "tn_s"
+      ],
+      "sha256": "cd91074b833c495b7aca589057bc37d3d82203a639774bdf50e42e4ac544c011"
+    }
+  }
+}

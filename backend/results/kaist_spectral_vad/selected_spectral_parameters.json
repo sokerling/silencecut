@@ -1,0 +1,26 @@
+{
+  "feature_parameters": {
+    "sample_rate_hz": 16000,
+    "window_ms": 25,
+    "hop_ms": 10,
+    "window": "hann",
+    "n_fft": 512,
+    "band_hz": [
+      200,
+      4000
+    ],
+    "noise_quantile": 0.2,
+    "energy_floor_dbfs": -60.0,
+    "stft_scaling": "psd",
+    "boundary": "zeros",
+    "padded": true
+  },
+  "decision_parameters": {
+    "energy_margin_db": 12.0,
+    "max_entropy": 0.75,
+    "max_flatness": 0.1,
+    "min_speech_ms": 250,
+    "max_gap_ms": 250
+  },
+  "tuning_recording": "construction_site"
+}

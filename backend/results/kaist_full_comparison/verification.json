@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "full_recording_method_pairs": 12,
+  "new_inference_runs": 9,
+  "reused_spectral_results": 3,
+  "metrics_recomputed_from_saved_intervals_and_mat": 12,
+  "frozen_parameters_unchanged": true,
+  "macro_averages_checked": 4,
+  "csv_hashes_checked": 30,
+  "previous_results_and_notebooks_unchanged": true
+}
